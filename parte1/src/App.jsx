@@ -1,10 +1,17 @@
+import { useState } from 'react'
 
-function App() {
-  
+const App = () => {
+
+  const [ counter, setCounter ] = useState(0)
+
+
+  setTimeout(
+    () => setCounter(counter + 1),
+    1000
+  )
+
   return (
-    <>
-     <h1>parte 1</h1>       
-    </>
+    <div>{counter}</div>
   )
 }
 
