@@ -23,8 +23,7 @@ const App = () => {
   }
 
   const average = (good + neutral - bad) / total 
-  const positive = (total / good) * 100
-
+  const positive = (100 * good) / total
   return (
     <>
     <div>
