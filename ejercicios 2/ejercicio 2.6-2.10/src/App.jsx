@@ -7,17 +7,25 @@ function searchName( array, name) {
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { 
+      name: 'Arto Hellas',
+      number: "4459-7876"
+   }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
-  const handleChange= (e)=> {
+  const handleChangeName= (e)=> {
     setNewName(e.target.value)
+  }
+  const handleChangeNumber= (e)=> {
+    setNewNumber(e.target.value)
   }
   const handleSubmit = (e) => {
     e.preventDefault();
     const numbersObjet = {
-      name: newName
+      name: newName,
+      number: newNumber
     }
     if(searchName(persons, newName)){
       alert(`${newName}, already exist`)
@@ -34,15 +42,18 @@ const App = () => {
       <h2>Phonebook</h2>
       <form  onSubmit={handleSubmit}>
         <div>
-          name: <input onChange={handleChange} value={newName}/>
+          name: <input onChange={handleChangeName} value={newName}/>
         </div>
+        <div>
+          number: <input onChange={handleChangeNumber} value={newNumber}/>
+          </div>
         <div>
           <button type="submit">add</button>
         </div>
       </form>
       <h2>Numbers</h2>
       <ul>
-        {persons.map(person => <li key={person.name}>{person.name}</li>)}
+        {persons.map(person => <li key={person.name}>{person.name}/{person.number}</li>)}
       </ul>
     </div>
   )
