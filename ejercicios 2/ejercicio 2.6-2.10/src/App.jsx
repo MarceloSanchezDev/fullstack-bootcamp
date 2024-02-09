@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+function searchName( array, name) {
+  const findName = array.find(arr => arr.name === name)
+  return findName
+}
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas' }
@@ -14,9 +19,16 @@ const App = () => {
     const numbersObjet = {
       name: newName
     }
-    setPersons(persons.concat(numbersObjet))
-    setNewName('')
+    if(searchName(persons, newName)){
+      alert(`${newName}, already exist`)
+    }else{
+      setPersons(persons.concat(numbersObjet))
+      setNewName('')
+    }
+    
   }
+
+
   return (
     <div>
       <h2>Phonebook</h2>
