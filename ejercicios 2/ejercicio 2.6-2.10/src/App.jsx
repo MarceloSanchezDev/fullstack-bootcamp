@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Filter from "./components/Filter";
+import PersonForm from "./components/PersonFrom";
+import Persons from "./components/Persons";
 
 function searchName(array, name) {
   const findName = array.find((arr) => arr.name === name);
@@ -30,7 +33,7 @@ const App = () => {
   const handleChangeNumber = (e) => {
     setNewNumber(e.target.value);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const numbersObjet = {
@@ -50,36 +53,11 @@ const App = () => {
     <>
       <div>
         <h2>Phonebook</h2>
-        <div>
-          filter shown with <input onChange={handleChangePersonSearch} />
-          {personSearch ? (
-            <div>
-              {personSearch.map(person => <p key={person.id}>{person.name}/{person.number}</p>)}
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
+        <Filter handle={handleChangePersonSearch} personSearch={personSearch}/>
         <h2>Add a new</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            name: <input onChange={handleChangeName} value={newName} />
-          </div>
-          <div>
-            number: <input onChange={handleChangeNumber} value={newNumber} />
-          </div>
-          <div>
-            <button type="submit">add</button>
-          </div>
-        </form>
+        <PersonForm handlers={{handleChangeName,handleChangeNumber,handleSubmit}} person={{newName,newNumber}}  />
         <h2>Numbers</h2>
-        <ul>
-          {persons.map((person) => (
-            <li key={person.name}>
-              {person.name}/{person.number}
-            </li>
-          ))}
-        </ul>
+        <Persons persons={persons}/>
       </div>
     </>
   );
