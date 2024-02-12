@@ -47,10 +47,11 @@ const App = () => {
       id: persons.length + 1 
     };
     if (searchName(persons, newName)) {
-      alert(`${newName}, already exist`);
+      if(confirm(`${newName}, already exist, do you want to update`)){
+        
+      }
     } else {
       createContact(numbersObjet).then(setPersons((contacts) => contacts.concat(numbersObjet)))
-      
       setNewName("");
     }
   };
@@ -65,7 +66,7 @@ const App = () => {
         <h2>Numbers</h2>
         {loading ? "loading..." : 
         <ul>
-          {persons.map(person => <Persons key={person.id} {...person}/>)}
+          {persons.map(person => <Persons key={person.id} {...person} />)}
         </ul>}
       </div>
     </>
