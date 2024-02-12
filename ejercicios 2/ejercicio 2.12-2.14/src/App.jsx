@@ -5,11 +5,18 @@ import Persons from "./components/Persons";
 import { useEffect } from "react";
 import { getAllContacts } from "./services/contacts/getAllContacts";
 import { createContact } from "./services/contacts/createContact";
+import { updateContact } from "./services/contacts/updateContact";
 
 function searchName(array, name) {
   const findName = array.find((arr) => arr.name === name);
   return findName;
 }
+function searchId(array, name){
+  const findId = array.find((arr) => arr.name === name)
+  return findId.id
+}
+
+
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -17,7 +24,6 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [personSearch, setPersonSearch] = useState("");
-
 
   useEffect( ()=> {
     getAllContacts()
@@ -48,7 +54,8 @@ const App = () => {
     };
     if (searchName(persons, newName)) {
       if(confirm(`${newName}, already exist, do you want to update`)){
-        
+        const id = searchId(persons, newName);
+        updateContact(id , numbersObjet)
       }
     } else {
       createContact(numbersObjet).then(setPersons((contacts) => contacts.concat(numbersObjet)))
