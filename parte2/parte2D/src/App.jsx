@@ -26,7 +26,7 @@ useEffect(()=>{
       body: newNote,
       userId: 1,
     }
-    createNote(noteObject).then((json) => setNotes(notes.concat(json))).catch((err)=> console.log(err));
+    createNote(noteObject).then((json) => setNotes((prevNotes)=>prevNotes.concat(json))).catch((err)=> console.log(err));
     setNewNote('')
   }
   const handleNoteChange = (e) => {
