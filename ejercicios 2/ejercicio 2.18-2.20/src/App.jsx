@@ -8,6 +8,7 @@ function App() {
   const [searchCountry, setSearchCountry] = useState("none")
 
   useEffect(()=> {getAllCountries().then(json => setCountries(json))},[])
+  
 
   const handleChange = (e) => {setSearchCountry(e.target.value)}
 
